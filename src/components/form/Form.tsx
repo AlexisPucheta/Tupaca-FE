@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { Task } from "../../interfaces";
+import { Task, TaskWithId } from "../../interfaces";
 import { useAppDispatch, useAppSelector } from "../../hooks/store";
 import { closeModal } from "../../store/modal/modalSlice";
 import { useTaskAction } from "../../hooks/useTask";
@@ -28,7 +28,7 @@ const Form: React.FC<Props> = (props) => {
     reset,
     formState: { errors },
   } = useForm({ mode: "all", resolver: yupResolver(schema) });
-  const onSubmit = (data: Task) => {
+  const onSubmit = (data:  TaskWithId | Task) => {
     const updatedTask = {
       ...taskSelected,
       title: data.title,
@@ -36,7 +36,7 @@ const Form: React.FC<Props> = (props) => {
       status: data.status,
     };
     props.isEditMode && updatedTask?.id
-      ? handleUpdate(updatedTask)
+      ? handleUpdate(updatedTask as TaskWithId)
       : handleCreate(data);
     dispatch(closeModal());
     reset();
