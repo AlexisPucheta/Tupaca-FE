@@ -37,7 +37,9 @@ const Board = () => {
   const overId = useRef<UniqueIdentifier>();
   const { handleUpdate } = useTaskAction();
 
-  const [draggingId, setDraggingId] =useState<UniqueIdentifier | undefined>(undefined)
+  const [draggingId, setDraggingId] = useState<UniqueIdentifier | undefined>(
+    undefined,
+  );
 
   useEffect(() => {
     setToDoTasks(tasks?.toDo || []);
@@ -56,7 +58,7 @@ const Board = () => {
       activationConstraint: {
         distance: 8,
       },
-    })
+    }),
   );
 
   const onDragEnd = () => {
@@ -76,17 +78,16 @@ const Board = () => {
 
       if (sourceTasks && setSourceTasks) {
         const oldIndex = sourceTasks.findIndex(
-          (task) => task.id === activeId.current
+          (task) => task.id === activeId.current,
         );
         const newIndex = sourceTasks.findIndex(
-          (task) => task.id === overId.current
+          (task) => task.id === overId.current,
         );
         if (oldIndex !== -1 && newIndex !== -1) {
           setSourceTasks((tasks) => arrayMove(tasks, oldIndex, newIndex));
         }
         if (activeTask.current)
           handleUpdate({ ...activeTask.current, index: newIndex });
-        //ver
         if (overTask?.current)
           handleUpdate({ ...overTask.current, index: oldIndex });
       }
@@ -136,14 +137,14 @@ const Board = () => {
         setDestinationTasks
       ) {
         const sourceIndex = sourceTasks.findIndex(
-          (task) => task.id === activeId.current
+          (task) => task.id === activeId.current,
         );
         if (sourceIndex !== -1) {
           setSourceTasks((tasks) =>
-            tasks.filter((task) => task.id !== activeId.current)
+            tasks.filter((task) => task.id !== activeId.current),
           );
           const destinationIndex = destinationTasks.findIndex(
-            (task) => task.id === overId.current
+            (task) => task.id === overId.current,
           );
           setDestinationTasks((tasks) => {
             if (activeTask.current) {
@@ -170,7 +171,7 @@ const Board = () => {
         }
       }
     }
-   setDraggingId(undefined)
+    setDraggingId(undefined);
   };
 
   const onDragStart = (e: DragStartEvent) => {
@@ -180,7 +181,7 @@ const Board = () => {
       inProgressTasks.find((t) => t.id === e.active.id) ||
       doneTasks.find((t) => t.id === e.active.id);
     activeTask.current = active;
-    setDraggingId(activeId.current)
+    setDraggingId(activeId.current);
   };
 
   const onDragOver = (e: DragOverEvent) => {
@@ -207,7 +208,7 @@ const Board = () => {
           >
             <Column
               tasks={toDoTasks.filter((task) =>
-                task.title.includes(filterValue)
+                task.title.includes(filterValue),
               )}
               title="To-Do"
               id="toDo"
@@ -216,7 +217,7 @@ const Board = () => {
 
             <Column
               tasks={inProgressTasks.filter((task) =>
-                task.title.includes(filterValue)
+                task.title.includes(filterValue),
               )}
               title="In Progress"
               id="inProgress"
@@ -225,7 +226,7 @@ const Board = () => {
 
             <Column
               tasks={doneTasks.filter((task) =>
-                task.title.includes(filterValue)
+                task.title.includes(filterValue),
               )}
               title="Done"
               id="done"

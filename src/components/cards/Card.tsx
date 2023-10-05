@@ -4,6 +4,8 @@ import { MODAL_TYPES } from "../../enums";
 import { TaskWithId } from "../../interfaces";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import EditIcon from "../icons/EditIcon";
+import DeleteIcon from "../icons/DeleteIcon";
 
 type Props = {
   task: TaskWithId;
@@ -33,11 +35,9 @@ const Card: React.FC<Props> = (props) => {
           }`}
         id={props.task.id}
       >
-        <p>Title: {props.task.title}</p>
-        <p>{props.task.index}</p>
-        <p>Description: {props.task.description}</p>
-        <p>Status: {props.task.status}</p>
-        <div className="flex justify-end space-x-5">
+        <p className="text-xl font-semibold line-clamp-2">{props.task.title}</p>
+        {props.task.description && <p>{props.task.description}</p>}
+        <div className="flex justify-end space-x-5 pb-2">
           <button
             className="z-9999"
             onClick={() => {
@@ -45,11 +45,11 @@ const Card: React.FC<Props> = (props) => {
                 openModal({
                   modalType: MODAL_TYPES.EDIT_TASK_MODAL,
                   taskSelected: props.task,
-                })
+                }),
               );
             }}
           >
-            EDIT
+            <EditIcon />
           </button>
           <button
             onClick={() => {
@@ -57,11 +57,11 @@ const Card: React.FC<Props> = (props) => {
                 openModal({
                   modalType: MODAL_TYPES.DELETE_TASK_MODAL,
                   taskSelected: props.task,
-                })
+                }),
               );
             }}
           >
-            DELETE
+            <DeleteIcon />
           </button>
         </div>
       </div>

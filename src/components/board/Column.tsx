@@ -55,9 +55,13 @@ const Column: React.FC<Props> = (props) => {
             strategy={verticalListSortingStrategy}
           >
             {!props.tasks?.length && <div className="min-h-100 h-200"></div>}
-            <div className="bg-[#333333] h-[300px]">
+            <div className="h-[300px]">
               {sortedTasks?.map((task: TaskWithId) => (
-                <Card task={task} key={task.id} active={task.id === props.activeId}/>
+                <Card
+                  task={task}
+                  key={task.id}
+                  active={task.id === props.activeId}
+                />
               ))}
             </div>
           </SortableContext>
