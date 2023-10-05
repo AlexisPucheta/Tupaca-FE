@@ -1,7 +1,7 @@
 export enum STATUS {
-  TODO = "TO_DO",
-  IN_PROGRESS = "IN_PROGRESS",
-  DONE = "DONE",
+  TODO = "toDo",
+  IN_PROGRESS = "inProgress",
+  DONE = "done",
 }
 
 export enum MODAL_TYPES {

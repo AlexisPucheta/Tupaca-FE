@@ -5,6 +5,7 @@ import { Task } from "../../interfaces";
 import { useAppDispatch, useAppSelector } from "../../hooks/store";
 import { closeModal } from "../../store/modal/modalSlice";
 import { useTaskAction } from "../../hooks/useTask";
+import { STATUS } from "../../enums";
 
 const schema = yup
   .object({
@@ -34,7 +35,7 @@ const Form: React.FC<Props> = (props) => {
       description: data.description,
       status: data.status,
     };
-    props.isEditMode && updatedTask?._id
+    props.isEditMode && updatedTask?.id
       ? handleUpdate(updatedTask)
       : handleCreate(data);
     dispatch(closeModal());
@@ -64,9 +65,9 @@ const Form: React.FC<Props> = (props) => {
             {...register("status")}
             defaultValue={props.isEditMode ? taskSelected?.status : ""}
           >
-            <option value="ToDo">To-Do</option>
-            <option value="InProgress">In Progress</option>
-            <option value="Done">Done</option>
+            <option value={STATUS.TODO}>To-Do</option>
+            <option value={STATUS.IN_PROGRESS}>In Progress</option>
+            <option value={STATUS.DONE}>Done</option>
           </select>
         </div>
         <input className="bg-[#66cdaa] rounded-xl" type="submit" />
