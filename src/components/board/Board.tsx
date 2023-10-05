@@ -152,6 +152,8 @@ const Board = () => {
             const newTasks = [...tasks];
             if (destinationIndex !== -1 && activeTask.current) {
               newTasks.splice(destinationIndex, 0, activeTask.current);
+            }
+            if (activeTask.current) {
               handleUpdate({
                 ...activeTask.current,
                 index: destinationIndex ? destinationIndex : 0,

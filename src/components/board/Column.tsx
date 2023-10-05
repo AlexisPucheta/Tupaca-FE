@@ -44,7 +44,7 @@ const Column: React.FC<Props> = (props) => {
     <>
       <div
         ref={setNodeRef}
-        className="w-full md:w-60 bg-white md:px-2 rounded-lg min-h-[500px] h-100"
+        className="w-full md:w-60 bg-white md:px-2 rounded-lg"
       >
         <p className="text-center">{props.title}</p>
         <div className="px-4 md:px-0">
@@ -54,8 +54,8 @@ const Column: React.FC<Props> = (props) => {
             items={sortedTasks}
             strategy={verticalListSortingStrategy}
           >
-            {!props.tasks?.length && <div className="min-h-100 h-200"></div>}
-            <div className="h-[300px]">
+            {!props.tasks?.length && <div className="h-40"></div>}
+            <div>
               {sortedTasks?.map((task: TaskWithId) => (
                 <Card
                   task={task}
