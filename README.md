@@ -39,3 +39,8 @@ This documentation provides an overview of the approach used to solve the coding
 "The frontend was initialized using Vite to streamline the integration of tools such as Tailwind CSS, Prettier, TypeScript, and more.
 ### Client
 The frontend utilizes Redux Toolkit as its state management solution. It includes a 'taskApi' responsible for handling server requests and a 'slice' for managing modals. Within the 'Board' component, drag-and-drop functionality is implemented for cards located in different columns (To-Do, In Progress, and Done). These cards can be edited, sorted, filtered, and moved between columns.
+
+### Deploy
+
+The client is deployed on vercel platform
+https://tupaca-fe.vercel.app/
