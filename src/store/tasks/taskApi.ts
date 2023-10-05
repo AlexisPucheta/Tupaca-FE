@@ -4,7 +4,7 @@ import { Task, TaskWithId, TasksFromBE } from "../../interfaces";
 export const taskApi = createApi({
   reducerPath: "taskAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/api/v1",
+    baseUrl: `${import.meta.env.VITE_SERVER_URL + import.meta.env.VITE_SERVER_API_V1_EP}`,
   }),
   tagTypes: ["Tasks"],
   endpoints: (builder) => ({

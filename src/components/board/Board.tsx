@@ -14,7 +14,6 @@ import {
   UniqueIdentifier,
   DragStartEvent,
   DragOverEvent,
-  closestCorners,
   DragOverlay,
   closestCenter,
 } from "@dnd-kit/core";

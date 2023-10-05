@@ -11,7 +11,7 @@ const schema = yup
   .object({
     title: yup.string().required().min(3),
     description: yup.string().optional(),
-    status: yup.string().optional(),
+    status: yup.string().optional().oneOf(Object.values(STATUS), 'Invalid status'),
   })
   .required();
 
@@ -28,7 +28,7 @@ const Form: React.FC<Props> = (props) => {
     reset,
     formState: { errors },
   } = useForm({ mode: "all", resolver: yupResolver(schema) });
-  const onSubmit = (data:  TaskWithId | Task) => {
+  const onSubmit = (data: {title: string, description?: string, status?: STATUS}) => {
     const updatedTask = {
       ...taskSelected,
       title: data.title,
@@ -37,7 +37,7 @@ const Form: React.FC<Props> = (props) => {
     };
     props.isEditMode && updatedTask?.id
       ? handleUpdate(updatedTask as TaskWithId)
-      : handleCreate(data);
+      : handleCreate(data as Task);
     dispatch(closeModal());
     reset();
   };
